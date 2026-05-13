@@ -4,7 +4,6 @@ import os
 import sys
 import subprocess
 import time
-import threading
 
 # Auto update
 try:
@@ -14,23 +13,14 @@ try:
 except:
     print("[!] Update skipped.")
 
-# Import tool (your main bot logic)
 try:
     import tool
+    
     print("[+] tool.py loaded successfully!")
+    
+    # এখানে main() কল করা হচ্ছে — টোকেন ইনপুট নেবে
+    tool.main()
+
 except Exception as e:
-    print(f"[-] Failed to import tool.py: {e}")
+    print(f"[-] Critical Error: {e}")
     sys.exit(1)
-
-print("\n" + "="*50)
-print(" FB Cookie Extractor Bot is Running ")
-print(" Send /start in Telegram")
-print("="*50)
-
-# Keep the script alive
-try:
-    while True:
-        time.sleep(10)
-except KeyboardInterrupt:
-    print("\n[!] Bot stopped by user.")
-    sys.exit(0)
